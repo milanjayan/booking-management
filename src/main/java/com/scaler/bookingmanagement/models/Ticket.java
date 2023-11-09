@@ -1,14 +1,26 @@
 package com.scaler.bookingmanagement.models;
 
 import com.scaler.bookingmanagement.enums.TicketStatus;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Ticket {
+@Getter
+@Setter
+@Entity
+@Table(name = "tables")
+public class Ticket extends BaseModel {
     private int number;
+    @ManyToOne
     private User user;
     private Double amount;
-    private List<Seat> seats;
+    @ManyToMany
+    private List<ShowSeat> seats = new ArrayList<>();
+    @ManyToOne
     private Show show;
+    @Enumerated
     private TicketStatus status;
 }
