@@ -1,5 +1,6 @@
 package com.scaler.bookingmanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 public class City extends BaseModel {
     private String name;
+    @JsonManagedReference
     @OneToMany(mappedBy = "city")
     private List<Theatre> theatres = new ArrayList<>();
 }

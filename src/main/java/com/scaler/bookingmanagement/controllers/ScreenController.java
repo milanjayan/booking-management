@@ -5,16 +5,18 @@ import com.scaler.bookingmanagement.exceptions.InvalidScreenDetailsException;
 import com.scaler.bookingmanagement.models.Screen;
 import com.scaler.bookingmanagement.services.ScreenService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/screen")
 @AllArgsConstructor
 public class ScreenController {
     private ScreenService screenService;
+
+    @GetMapping("{id}")
+    public Screen getScreen(@PathVariable Long id) {
+        return screenService.getScreen(id);
+    }
 
     @PostMapping
     public Screen createScreen(@RequestBody CreateScreenRequest request) {

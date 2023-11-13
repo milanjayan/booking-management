@@ -17,6 +17,10 @@ public class MovieService {
                 .orElseThrow(()-> new MovieNotFoundException("Movie with id: "+id+" not found"));
     }
 
+    public Movie getMovie(String name) {
+        return movieRepository.findMovieByName(name)
+                .orElseThrow(()-> new MovieNotFoundException("Movie with name: "+name+" not found"));
+    }
     public Movie createMovie(CreateMovieRequest request) {
         validate(request);
         Movie movie = Movie.builder()

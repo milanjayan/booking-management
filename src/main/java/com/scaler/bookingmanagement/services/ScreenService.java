@@ -10,6 +10,8 @@ import com.scaler.bookingmanagement.repositories.ScreenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -19,6 +21,13 @@ public class ScreenService {
     private TheatreService theatreService;
     private CityService cityService;
 
+
+    public Screen getScreen(Long id) {
+        return screenRepository.findById(id)
+                .orElseThrow(() -> new ScreenNotFoundException(
+                        "Screen with id: "+id+" not found"
+                ));
+    }
 
     public Screen getScreen(Theatre theatre, String screeNumber) {
         return screenRepository.findScreenByTheatreAndNumber(theatre, screeNumber)
@@ -39,8 +48,8 @@ public class ScreenService {
     private void validate(CreateScreenRequest request) {
         //do all validations here
         Theatre theatre = theatreService.getTheatreByNameAndCityName(request.getTheatreName(), request.getCityName());
-        Screen screen = getScreen(theatre, request.getScreenNumber());
-        if(screen != null) {
+        Optional<Screen> screen = screenRepository.findScreenByTheatreAndNumber(theatre, request.getScreenNumber());
+        if(screen.isPresent()) {
             throw new ScreenAlreadyPresentException(
                     "Screen with name: "+request.getScreenNumber()+
                             " already present in theatre "+theatre.getName()
