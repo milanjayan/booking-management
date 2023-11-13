@@ -1,18 +1,23 @@
 package com.scaler.bookingmanagement.models;
 
 import com.scaler.bookingmanagement.enums.SeatType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "seats")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Seat extends BaseModel {
-    private String number;
+    @ManyToOne
+    @JoinColumn(name = "screen_id")
+    private Screen screen;
+    private String row;
+    private String column;
     @Enumerated
     private SeatType type;
 }

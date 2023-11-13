@@ -1,4 +1,4 @@
-package com.scaler.bookingmanagement.dtos;
+package com.scaler.bookingmanagement.dtos.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

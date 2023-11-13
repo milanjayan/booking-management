@@ -3,8 +3,8 @@ package com.scaler.bookingmanagement.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,11 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "cities")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class City extends BaseModel {
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "city")
     private List<Theatre> theatres = new ArrayList<>();
 }

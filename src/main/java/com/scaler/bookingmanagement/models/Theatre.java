@@ -1,11 +1,8 @@
 package com.scaler.bookingmanagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +11,18 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "theatres")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Theatre extends BaseModel {
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String address;
-    @OneToMany
+    @OneToMany(mappedBy = "theatre")
     private List<Screen> screens = new ArrayList<>();
     @OneToMany
     private List<Show> shows = new ArrayList<>();

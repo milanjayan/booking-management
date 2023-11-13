@@ -5,13 +5,16 @@ import com.scaler.bookingmanagement.enums.PaymentStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "payments")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Payment extends BaseModel {
     private Double amount;
     @Enumerated

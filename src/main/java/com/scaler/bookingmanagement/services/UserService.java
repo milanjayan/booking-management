@@ -18,8 +18,8 @@ public class UserService {
         //validate username
         // validate user password
         validate(username, password);
-
-        return null;
+        User user = new User(username, password);
+        return userRepository.save(user);
     }
 
     private void validate(String username, String password) {

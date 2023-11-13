@@ -2,8 +2,8 @@ package com.scaler.bookingmanagement.models;
 
 import com.scaler.bookingmanagement.enums.TicketStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "tables")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ticket extends BaseModel {
     private int number;
     @ManyToOne

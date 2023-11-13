@@ -4,8 +4,8 @@ import com.scaler.bookingmanagement.enums.Genre;
 import com.scaler.bookingmanagement.enums.Language;
 import com.scaler.bookingmanagement.enums.MovieFeature;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -15,9 +15,12 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "movies")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie extends BaseModel {
     private String name;
-    private Duration duration;
+    private String duration;
     private Double rating;
     @ElementCollection
     @Enumerated

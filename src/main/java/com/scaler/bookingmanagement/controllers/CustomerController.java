@@ -1,6 +1,6 @@
 package com.scaler.bookingmanagement.controllers;
 
-import com.scaler.bookingmanagement.dtos.CreateCustomerRequest;
+import com.scaler.bookingmanagement.dtos.requests.CreateCustomerRequest;
 import com.scaler.bookingmanagement.exceptions.InvalidCustomerCredentialsException;
 import com.scaler.bookingmanagement.models.Customer;
 import com.scaler.bookingmanagement.services.CustomerService;
