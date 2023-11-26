@@ -1,8 +1,8 @@
 package com.scaler.bookingmanagement.enums;
 
 public enum SeatType {
-    GOLD,
-    PLATINUM,
-    DIAMOND,
-    VIP
+    GOLD, //150
+    PLATINUM, //300
+    DIAMOND, //700
+    VIP // 1000
 }

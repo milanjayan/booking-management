@@ -21,24 +21,14 @@ public class MovieService {
         return movieRepository.findMovieByName(name)
                 .orElseThrow(()-> new MovieNotFoundException("Movie with name: "+name+" not found"));
     }
-    public Movie createMovie(CreateMovieRequest request) {
-        validate(request);
-        Movie movie = Movie.builder()
-                .name(request.getName())
-                .duration(request.getDuration())
-                .rating(request.getRating())
-                .languages(request.getLanguages())
-                .genres(request.getGenres())
-                .shows(request.getShows())
-                .features(request.getFeatures())
-                .build();
-
+    public Movie createMovie(Movie movie) {
+        validate(movie);
         return movieRepository.save(movie);
     }
 
-    private void validate(CreateMovieRequest request) {
+    private void validate(Movie movie) {
         //validations
-        String name = request.getName();
+        String name = movie.getName();
         movieRepository.findMovieByName(name)
                 .ifPresent(value -> {
                     throw new MovieAlreadyPresentException(name);

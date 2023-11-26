@@ -14,7 +14,7 @@ public class MovieController {
 
     private MovieService movieService;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Movie getMovie(@PathVariable Long id) {
         return movieService.getMovie(id);
     }
@@ -22,7 +22,8 @@ public class MovieController {
     @PostMapping
     public Movie createMovie(@RequestBody CreateMovieRequest request) {
         validate(request);
-        return movieService.createMovie(request);
+        Movie movie = request.transform();
+        return movieService.createMovie(movie);
     }
 
     private void validate(CreateMovieRequest request) {

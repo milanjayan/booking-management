@@ -13,5 +13,6 @@ public enum Genre {
     ACTION,
     BIOGRAPHY,
     DRAMA,
-    ROMANCE
+    ROMANCE,
+    CRIME
 }

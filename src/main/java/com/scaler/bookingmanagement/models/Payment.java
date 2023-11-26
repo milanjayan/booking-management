@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicUpdate
 public class Payment extends BaseModel {
     private Double amount;
     @Enumerated

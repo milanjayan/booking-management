@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +17,18 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicUpdate
 public class Theatre extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "city_id")
     @JsonBackReference
-    @JoinColumn(name = "city_id", nullable = false)
     private City city;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String address;
     @OneToMany(mappedBy = "theatre")
     @JsonManagedReference
-    private List<Screen> screens = new ArrayList<>();
-    @OneToMany
+    private List<Screen> screens;
+    @OneToMany(mappedBy = "theatre")
     @JsonManagedReference
     private List<Show> shows = new ArrayList<>();
 }

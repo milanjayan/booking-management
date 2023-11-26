@@ -1,11 +1,15 @@
 package com.scaler.bookingmanagement.controllers;
 
 import com.scaler.bookingmanagement.dtos.requests.CreateShowRequest;
+import com.scaler.bookingmanagement.dtos.requests.GetShowsRequest;
+import com.scaler.bookingmanagement.dtos.response.ShowResponse;
 import com.scaler.bookingmanagement.exceptions.InvalidShowDetailsException;
 import com.scaler.bookingmanagement.models.Show;
 import com.scaler.bookingmanagement.services.ShowService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/show")
@@ -16,6 +20,11 @@ public class ShowController {
     @GetMapping("{id}")
     public Show getShow(@PathVariable Long id) {
         return showService.getShowById(id);
+    }
+
+    @GetMapping("/shows")
+    public List<ShowResponse> getShows(@RequestBody GetShowsRequest request) {
+        return showService.getShows(request);
     }
 
     @PostMapping

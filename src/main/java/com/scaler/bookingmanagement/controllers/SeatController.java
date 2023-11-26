@@ -7,11 +7,18 @@ import com.scaler.bookingmanagement.services.SeatService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/seat")
 @AllArgsConstructor
 public class SeatController {
     private SeatService seatService;
+
+    @GetMapping("{id}")
+    public Seat getSeat(@PathVariable Long id) {
+        return seatService.getSeat(id);
+    }
 
     @PostMapping
     public Seat createSeat(@RequestBody CreateSeatRequest request) {
